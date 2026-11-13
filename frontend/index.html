@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT Support Desk</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>IT Support Desk</h1>
+        <p>Gestion des incidents informatiques</p>
+    </header>
+
+    <main>
+        <section id="new-ticket">
+            <h2>Créer un ticket</h2>
+
+            <form id="ticket-form">
+                <label for="title">Titre du ticket</label>
+                <input type="text" id="title" required>
+
+                <label for="description">Description</label>
+                <textarea id="description" required></textarea>
+
+                <label for="priority">Priorité</label>
+                <select id="priority">
+                    <option value="low">Faible</option>
+                    <option value="medium" selected>Moyenne</option>
+                    <option value="high">Élevée</option>
+                </select>
+
+                <button type="submit">Créer le ticket</button>
+            </form>
+        </section>
+
+        <section id="ticket-list">
+            <h2>Tickets existants</h2>
+            <div id="tickets-container">
+                Chargement des tickets...
+            </div>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
+

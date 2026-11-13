@@ -1,0 +1,46 @@
+services:
+  itsupportdesk-db:
+    image: postgres:15-bookworm
+    env_file:
+      - ./backend/.env.postgres
+    volumes:
+      - itsupportdesk-postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "itsupport_app", "-d", "itsupportdesk"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    restart: unless-stopped
+    networks:
+      - itsupportdesk-net
+#backend
+  it-support-desk-api:
+    image: it-support-desk-api:1.1
+    env_file:
+      - ./backend/.env.docker
+    depends_on:
+      itsupportdesk-db:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - itsupportdesk-net
+#frontend
+  frontend:
+    image: it-support-desk-frontend:1.0
+    depends_on:
+      it-support-desk-api:
+        condition: service_healthy
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+    networks:
+      - itsupportdesk-net
+
+volumes:
+  itsupportdesk-postgres-data:
+    external: true
+
+networks:
+  itsupportdesk-net:
+    external: true

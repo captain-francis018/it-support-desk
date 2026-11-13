@@ -1,0 +1,14 @@
+# Dépendances locales
+node_modules/
+
+# Secrets et configuration locale
+.env
+.env.*
+!.env.example
+
+# Métadonnées Git
+.git/
+
+# Logs et tests
+npm-debug.log*
+coverage/

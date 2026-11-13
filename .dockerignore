@@ -1,0 +1,14 @@
+# Dépendances locales
+**/node_modules/
+
+# Fichiers secrets
+**/.env
+**/.env.*
+!**/.env.example
+
+# Métadonnées Git
+.git/
+
+# Logs et couverture de tests
+**/npm-debug.log*
+**/coverage/
